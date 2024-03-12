@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserStoryRepository extends JpaRepository<UserStory, Long> {
+public interface IncomeStreamRepository extends JpaRepository<IncomeStream, Long> {
 
-    List<UserStory> findByIdAllIgnoreCase(Long id);
+    List<IncomeStream> findByIdAllIgnoreCase(Long id);
+
+    //List<IncomeStream> findall();
 
     //List<UserStory> findByNameIgnoreCase(String name);
    // List<UserStory> findByStatus(String status);

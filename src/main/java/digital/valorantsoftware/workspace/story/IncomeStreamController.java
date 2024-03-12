@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping("story")
-public class UserStoryController {
+@RequestMapping("income")
+public class IncomeStreamController {
 
     @Autowired
-    UserStoryService userStoryService;
+    IncomeStreamService incomeStreamService;
 
-    public UserStoryController() {
+
+
+    public IncomeStreamController() {
 
         System.out.println("## ");
 
@@ -45,11 +47,11 @@ public class UserStoryController {
     }
 
     @GetMapping("/")
-    public List<UserStory> findAll() {
+    public List<IncomeStream> findAll() {
 
         System.out.println("enter > findAll");
 
-        List<UserStory> userStoryList = this.userStoryService.findAll();
+        List<IncomeStream> userStoryList = this.incomeStreamService.findAll();
 
         System.out.println("projectList / ");
 
@@ -62,38 +64,38 @@ public class UserStoryController {
     }
 
     @PutMapping("/")
-    UserStory createUserStory(@RequestBody UserStory userStory) {
+    IncomeStream createUserStory(@RequestBody IncomeStream userStory) {
 
         System.out.println("enter > createUserStory");
 
         System.out.println("userStory / " + userStory);
 
-        return this.userStoryService.save(userStory);
+        return this.incomeStreamService.save(userStory);
 
     }
 
     @GetMapping("/{id}")
-    UserStory findById(@PathVariable Long id) {
+    IncomeStream findById(@PathVariable Long id) {
 
-        return this.userStoryService.findById(id);
+        return this.incomeStreamService.findById(id);
 
     }
 
   /*  @GetMapping("/byStatus/{status}")
     List<UserStory> findByStatus(@PathVariable String status) {
 
-        return this.userStoryService.findByStatus(status);
+        return this.incomeStreamService.findByStatus(status);
 
     }*/
 
     @PostMapping("/update")
-    public UserStory updateUserStory(@RequestBody UserStory project) {
+    public IncomeStream updateUserStory(@RequestBody IncomeStream project) {
 
         System.out.println("enter > updateUserStory");
 
         System.out.println("userStory / " + project);
 
-        UserStory responseUserStory = this.userStoryService.save(project);
+        IncomeStream responseUserStory = this.incomeStreamService.save(project);
 
         System.out.println("responseUserStory / " + responseUserStory);
 
@@ -106,7 +108,7 @@ public class UserStoryController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
 
-        this.userStoryService.delete(id);
+        this.incomeStreamService.delete(id);
 
     }
 
@@ -123,7 +125,7 @@ public class UserStoryController {
 
         System.out.println("enter > findGoal");
 
-        Double userStoryList = this.userStoryService.findGoal();
+        Double userStoryList = this.incomeStreamService.findGoal();
 
         System.out.println("projectList / ");
 
@@ -138,17 +140,21 @@ public class UserStoryController {
     @GetMapping("earned")
     public Double earned() {
 
-        System.out.println("enter > earned");
+       return this.incomeStreamService.calculatedEarnedTotal();
 
-        List<UserStory> userStoryList = this.userStoryService.findAll();
+    }
 
-        System.out.println("projectList / ");
+    @GetMapping("percentEarned")
+    public Double percentEarned() {
 
-        System.out.println(userStoryList);
+        return this.incomeStreamService.percentageOfTotalEarnings();
 
-        System.out.println("exit < findAll");
+    }
 
-        return userStoryList;
+    @GetMapping("distanceToGoal")
+    public Double distanceToGoal() {
+
+        return this.incomeStreamService.distanceToGoal();
 
     }
 
@@ -159,5 +165,20 @@ public class UserStoryController {
     * aggregation fx made and move to svc function
     *
     * */
+
+    /*{
+    "estimatedEarningsPerYear" : 150000.00,
+    "name" : "Privtae Paper",
+    "source" : "YT",
+    "description" : "hustle"
+}
+
+{
+    "estimatedEarningsPerYear" : 100000.00,
+    "name" : "Gov Con",
+    "source" : "USA",
+    "description" : "feet up"
+}
+*/
 
 }
