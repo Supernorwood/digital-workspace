@@ -9,13 +9,11 @@ import jakarta.persistence.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "userstory")
-public class UserStory {
+public class IncomeStream {
 
-    private static final Logger log = LoggerFactory.getLogger(UserStory.class);
+    private static final Logger log = LoggerFactory.getLogger(IncomeStream.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,10 +47,10 @@ public class UserStory {
     private Date insertDate;
     private Date updateDate;*/
 
-    public UserStory() {
+    public IncomeStream() {
     }
 
-    public UserStory(double estimatedEarningsPerYear, String source, String name, String description) {
+    public IncomeStream(double estimatedEarningsPerYear, String source, String name, String description) {
         this.estimatedEarningsPerYear = estimatedEarningsPerYear;
         this.source = source;
         this.name = name;
